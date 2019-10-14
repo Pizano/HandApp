@@ -1,0 +1,74 @@
+<mat-card class="container-details-inventario">
+
+  <form [formGroup]="ownerForm">
+    <mat-card-title>
+      <h4 class="title-Details">Create Product</h4>
+    </mat-card-title>
+
+    <mat-grid-list cols="3" rowHeight="70px" >
+
+      <mat-grid-tile>
+        <mat-form-field class="mat-form-field">
+          <input required matInput type="text" placeholder="Model" [(ngModel)]="product.model"
+            formControlName="model" id="model" #model maxlength="50" (keypress)="keyPressAlphanumeric($event)">
+          <mat-hint align="end">{{model.value?.length || 0}}/50</mat-hint>
+          <mat-error *ngIf="hasError('model', 'required')">Model is required</mat-error>
+          <mat-error *ngIf="hasError('model', 'maxlength')">You have more than 50 characters</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>     
+          <mat-form-field class="mat-form-field">
+            <input required matInput type="text" placeholder="Brand" [(ngModel)]="product.brand"
+              formControlName="brand" id="brand" #brand maxlength="50" (keypress)="keyPressAlphanumeric($event)">
+            <mat-hint align="end">{{brand.value?.length || 0}}/50</mat-hint>
+            <mat-error *ngIf="hasError('brand', 'required')">Brand is required</mat-error>
+            <mat-error *ngIf="hasError('brand', 'maxlength')">You have more than 50 characters</mat-error>
+          </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>      
+          <mat-form-field class="mat-form-field">
+            <input required matInput type="text" placeholder="Kilometers" [(ngModel)]="product.kilometers"
+              formControlName="kilometers" id="kilometers" #kilometers (keypress)="keyPressNumber($event)">
+            <mat-error *ngIf="hasError('kilometers', 'required')">Kilometers is required</mat-error>
+          </mat-form-field>   
+      </mat-grid-tile>
+
+      <mat-grid-tile>     
+          <mat-form-field class="mat-form-field">
+            <input required matInput type="text" placeholder="price" [(ngModel)]="product.price"
+              formControlName="price" id="price" #price maxlength="60" (keypress)="keyPressNumber($event)">
+            <mat-error *ngIf="hasError('price', 'required')">Price is required</mat-error>
+          </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile>
+          <mat-form-field class="mat-form-field">
+            <input  matInput type="text" placeholder="year" [(ngModel)]="product.year" formControlName="year"
+              id="year" #year maxlength="60" (keypress)="keyPressNumber($event)">
+          </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>     
+            <mat-form-field class="mat-form-field">
+              <input  matInput type="text" placeholder="Description" [(ngModel)]="product.description"
+                formControlName="description" id="description" #description maxlength="10" (keypress)="keyPressAlphanumeric($event)">
+                <mat-hint align="end">{{description.value?.length || 0}}/100</mat-hint>
+              <mat-error *ngIf="hasError('description', 'maxlength')">You have more than 100 characters</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+
+    <mat-card-actions class="action-buttons">
+      <button mat-button [disabled]="!ownerForm.valid" (click)="crear()">Crear</button>
+      <button mat-button (click)="cancelar()">Cancelar</button>
+    </mat-card-actions>
+
+    <mat-card-footer class="footer-text">
+      <h6>Los campos con * se consideran obligatorios</h6>
+    </mat-card-footer>
+  </form>
+</mat-card>

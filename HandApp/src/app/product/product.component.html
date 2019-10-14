@@ -1,0 +1,77 @@
+<mat-progress-bar [mode]="mode"></mat-progress-bar>
+<ng-template #callAPIDialog>
+  <h2 matDialogTitle>Info Message</h2>
+  <mat-dialog-content>Are you sure?</mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button matDialogClose="no">No</button>
+    <button mat-button matDialogClose="yes">Yes</button>
+  </mat-dialog-actions>
+</ng-template>
+
+<mat-grid-list cols="2" rowHeight="50px">
+  <mat-grid-tile>
+    <button md-raised-button routerLink="/create" class="btnCrear btn btn-primary">Crear</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="model">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Model </th>
+    <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+  </ng-container>
+  
+  <!-- Name Column -->
+  <ng-container matColumnDef="brand">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Brand </th>
+    <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="kilometers">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Kilometers </th>
+    <td mat-cell *matCellDef="let element"> {{element.kilometers}} </td>
+  </ng-container>
+  
+   <!-- Name Column -->
+   <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Year </th>
+    <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Editar">
+    <th mat-header-cell *matHeaderCellDef> Editar </th>
+    <td mat-cell *matCellDef="let element"> <button class="btn btn-secondary" md-raised-button routerLink="/detail/{{element.id}}">Editar</button>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="Eliminar">
+    <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+    <td mat-cell *matCellDef="let element"> <button class="btn btn-secondary" md-raised-button (click)="openDialog(element.id)">Eliminar</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

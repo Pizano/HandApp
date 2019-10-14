@@ -1,0 +1,37 @@
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1>handCloud</h1>
+    <span class="menu-spacer"></span>
+    <div>
+    
+      <a class="aSideVar" mat-button routerLink="/products"> Products </a>
+
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav [mode]="mode.value" >
+      <mat-nav-list>
+          <mat-list role="list">
+              
+              <mat-list-item role="listitem"><a routerLink="/products">Products</a></mat-list-item>
+  
+            </mat-list>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh;">
+  
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+
+<!-- <router-outlet></router-outlet> -->
